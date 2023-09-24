@@ -20,7 +20,7 @@ public class PersonService {
     public Person save(Person person){
         return personRepository.save(person);
     }
-    public ResponseDto<List<Person>> findByName(Pageable pageable, String first, String last){
+    public ResponseDto<List<Person>> findByAttributes(Pageable pageable, String first, String last){
         Page<Person> people = personRepository.findByAttributes(pageable, first, last);
         int pages = people.getTotalPages();
         return new ResponseDto<>(people.stream().toList(), pages);

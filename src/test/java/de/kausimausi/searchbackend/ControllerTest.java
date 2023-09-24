@@ -43,12 +43,12 @@ public class ControllerTest {
         var expectedDto = new ResponseDto<>(
                 List.of(new Person(1L, "kausi", "mausi")), 2
         );
-        when(personService.findByName(
+        when(personService.findByAttributes(
                 eq(PageRequest.of(3,2)), eq("kausi"), eq("mausi")
         )).thenReturn(expectedDto);
         controller = new Controller(personService);
         var res = controller.get("kausi", "mausi", 3, 2);
-        verify(personService, times(1)).findByName(
+        verify(personService, times(1)).findByAttributes(
                any(), any(), any()
         );
         assertThat(res).isEqualTo(expectedDto);
