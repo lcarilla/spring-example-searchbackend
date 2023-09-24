@@ -41,13 +41,13 @@ public class ControllerTest {
     @Test
     public void testGetPersons(){
         var expectedDto = new ResponseDto<>(
-                List.of(new Person(1L, "kausi", "mausi")), 2
+                List.of(new Person(1L, "karl", "lauterbach")), 2
         );
         when(personService.findByAttributes(
-                eq(PageRequest.of(3,2)), eq("kausi"), eq("mausi")
+                eq(PageRequest.of(3,2)), eq("karl"), eq("lauterbach")
         )).thenReturn(expectedDto);
         controller = new Controller(personService);
-        var res = controller.get("kausi", "mausi", 3, 2);
+        var res = controller.get("karl", "lauterbach", 3, 2);
         verify(personService, times(1)).findByAttributes(
                any(), any(), any()
         );
