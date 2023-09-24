@@ -23,7 +23,7 @@ public class Controller {
                             @RequestParam(required = false) String last,
                             @RequestParam int page,
                             @RequestParam int size){
-        if(size <= 0) throw new BadRequestException("page size must be greater than 0");
+        if(size <= 0 || page < 0) throw new BadRequestException("page size must be greater than 0");
         return personService.findByName(PageRequest.of(page, size), first, last);
     }
     @PutMapping(path = "/{id}")
